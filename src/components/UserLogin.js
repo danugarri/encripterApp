@@ -13,7 +13,7 @@ const[user,setUser] = useState('')
 
 //selecting user input to authorise
 const authorize= e => {
-    //e.preventDefault()
+    e.preventDefault()
     const userName = e.target.querySelector(
       'input[name="username"]').value;
     const userlastname= e.target.querySelector('input[name="userlastname"]').value
