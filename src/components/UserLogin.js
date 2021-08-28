@@ -49,16 +49,21 @@ const logOut = () =>{
 
 //when input the correct userName show logged 
     return (
-        <div>{((!authorisation && user!=='Daniela')|| (!authorisation && user!=='daniela')) ? login  : 
+        <div>{(!authorisation ) ? login  : 
             (<div>
                 <h4>Hola {user}</h4>
-            <Logged /> <GenericUser />
-           <button onClick={logOut}>Salir</button> 
-            </div>) ||  (<div>
+                {
+                    user==='daniela' ? <div><Logged /> <GenericUser />
+                    <button onClick={logOut}>Salir</button> 
+                    </div> : login
+
+                }
+            </div>)
+             || authorisation ? <div>
                 <h4>Hola {user}</h4>
            <GenericUser />
            <button onClick={logOut}>Salir</button> 
-            </div>) 
+            </div> : login
              
             }</div>
         
