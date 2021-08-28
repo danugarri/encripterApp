@@ -20,12 +20,17 @@ const authorize= e => {
       //if the user is daniela
     if((userName==='Daniela' && userlastname==='Molines Ojeda')|| (userName==='daniela' && userlastname==='molines ojeda')){
     setAuthorisation(true)
+    setUser( () =>  userName)
          //switch state to true which show the <Logged/> component
     }
     //if the user is a generic one
     if( userName===genericUser[0] && userlastname===genericUser[1] ){
         setUser(() => userName)
         setAuthorisation(() => true)
+    }
+    else if( (userName !==genericUser[0] && userlastname===genericUser[1])||
+    (userName !==genericUser[0] && userlastname !==genericUser[1]) ){
+        setAuthorisation(false)
     }
 }
 // variable to show if there is not authorised user
@@ -44,7 +49,7 @@ const logOut = () =>{
 
 //when input the correct userName show logged 
     return (
-        <div>{(!authorisation && user==='Daniela')|| (!authorisation && user==='daniela') ? login  : 
+        <div>{((!authorisation && user!=='Daniela')|| (!authorisation && user!=='daniela')) ? login  : 
             (<div>
                 <h4>Hola {user}</h4>
             <Logged /> <GenericUser />

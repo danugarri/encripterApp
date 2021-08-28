@@ -5,8 +5,7 @@ import React, { useState } from 'react';
 export default function GenericUser () {
     //define the state for the user input
     const [stringtToEncript, setStrintToEncript]= useState('')
-    const[user,setUser] = useState(true)
-
+   
 //event handler function
 const encript = (event) => {
    
@@ -17,9 +16,10 @@ setStrintToEncript(string)
 }
 
 //event listener to logout when click on button tag
-const logOut = () =>{
+/*const logOut = () =>{
     setUser(false)//change state
 }
+*/
 
 const userView= (<main>
     <h1> Encriptemos algo</h1>
@@ -32,8 +32,7 @@ const userView= (<main>
   
 </main>)
     return (<div>
-        {useState ? userView : 
-        <button onClick={logOut}>Salir</button> }
+        {userView }
     </div>
        
         
