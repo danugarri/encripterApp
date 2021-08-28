@@ -1,6 +1,6 @@
 import {React,useState} from 'react';
 import './UserLogin.css'
-import Logged from './Logged'
+//import Logged from './Logged'
 import GenericUser from './GenericUser';
 
 // defined a generic user
@@ -10,6 +10,7 @@ export default function UserLogin () {
 const[authorisation,setAuthorisation]= useState(false)
 //state for generic user
 const[user,setUser] = useState('')
+const [lastName, setLastName] = useState('')
 
 //selecting user input to authorise
 const authorize= e => {
@@ -19,14 +20,16 @@ const authorize= e => {
     const userlastname= e.target.querySelector('input[name="userlastname"]').value
       //if the user is daniela
     if((userName==='Daniela' && userlastname==='Molines Ojeda')|| (userName==='daniela' && userlastname==='molines ojeda')){
-    setAuthorisation(true)
-    setUser( () =>  userName)
+        setAuthorisation(() => true)
+        setUser( () =>  userName)
+        setLastName( () => userlastname)
          //switch state to true which show the <Logged/> component
     }
     //if the user is a generic one
     if( userName===genericUser[0] && userlastname===genericUser[1] ){
         setUser(() => userName)
         setAuthorisation(() => true)
+        setLastName( () => userlastname)
     }
     else if( (userName !==genericUser[0] && userlastname===genericUser[1])||
     (userName !==genericUser[0] && userlastname !==genericUser[1]) ){
@@ -49,21 +52,16 @@ const logOut = () =>{
 
 //when input the correct userName show logged 
     return (
-        <div>{(!authorisation ) ? login  : 
-            (<div>
-                <h4>Hola {user}</h4>
-                {
-                    user==='daniela' ? <div><Logged /> <GenericUser />
-                    <button onClick={logOut}>Salir</button> 
-                    </div> : login
-
-                }
-            </div>)
-             || authorisation ? <div>
-                <h4>Hola {user}</h4>
+        <div>{ authorisation ? <div>
+                <h4>Hola {user} {lastName}</h4>
            <GenericUser />
            <button onClick={logOut}>Salir</button> 
-            </div> : login
+            </div> : <div>
+                {login} <h4> Prueba con: </h4>
+                <p>Nombre: user</p>
+                <p>Apellidos: user</p>
+                </div>
+
              
             }</div>
         
