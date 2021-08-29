@@ -30,12 +30,15 @@ const authorize= e => {
     }
     //if this user is not registered
     if( (userName !==genericUser[0] && userlastname===genericUser[1])||
-    (userName !==genericUser[0] && userlastname !==genericUser[1]) ){
+    (userName !==genericUser[0] && userlastname !==genericUser[1]) ||
+    (userName ===genericUser[0] && userlastname!==genericUser[1])){
         setAuthorisation(false)
         swal(`Lo sentimos ${userName} ${userlastname} no estás registrado`)
+
         //function to reset the input field
         function reset (e) {
            e.target.querySelector('input[name="username"]').value= ''
+           e.target.querySelector('input[name="userlastname"]').value =''
 
         }
         //call reset function

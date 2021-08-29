@@ -3,7 +3,9 @@ form{
     background-color: yellow;
     width:fit-content;
     margin:0 auto;
-    padding:20px
+    padding:20px;
+    border:solid gray 5px;
+    border-radius: 10%;
    
 
 }

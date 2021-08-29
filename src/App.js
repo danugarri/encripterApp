@@ -1,13 +1,14 @@
 import React from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import './App.css';
-import BasicView from './components/BasicView';
+import BasicView from './components/BasicView/BasicView';
 import Desencripted from './components/Desencripted'
 import Encripted from './components/Encripted';
 import UserLogin from './components/UserLogin';
 import Logged from './components/Logged';
 import About from './components/About'
 import GenericUser from './components/GenericUser';
+
 
 function App(props) {
   console.log(props)
@@ -16,7 +17,9 @@ function App(props) {
     
   <Router >
       {/* Application views are rendered here */}
+      <Route path ="/">{/* this is the first view when entering the app*/}
       <BasicView />
+    </Route>
       <Route path ='/userlogin'>
         <UserLogin />
       </Route>
@@ -35,6 +38,7 @@ function App(props) {
       <Route path ="/user" >
         <GenericUser />
     </Route>
+  
   </Router>
   
   );
