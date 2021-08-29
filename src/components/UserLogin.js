@@ -2,6 +2,7 @@ import {React,useState} from 'react';
 import './UserLogin.css'
 //import Logged from './Logged'
 import GenericUser from './GenericUser';
+import swal from 'sweetalert';
 
 // defined a generic user
 const genericUser= ['user','user']
@@ -9,15 +10,15 @@ export default function UserLogin () {
 /* sólo podrá entrar daniela*/
 const[authorisation,setAuthorisation]= useState(false)
 //state for generic user
-const[user,setUser] = useState('')
-const [lastName, setLastName] = useState('')
+let[user,setUser] = useState('')
+let [lastName, setLastName] = useState('')
 
 //selecting user input to authorise
 const authorize= e => {
     e.preventDefault()
-    const userName = e.target.querySelector(
+    let userName = e.target.querySelector(
       'input[name="username"]').value;
-    const userlastname= e.target.querySelector('input[name="userlastname"]').value
+    let userlastname= e.target.querySelector('input[name="userlastname"]').value
       //if the user is daniela
     if((userName==='Daniela' && userlastname==='Molines Ojeda')|| (userName==='daniela' && userlastname==='molines ojeda')){
         setAuthorisation(() => true)
@@ -31,9 +32,18 @@ const authorize= e => {
         setAuthorisation(() => true)
         setLastName( () => userlastname)
     }
-    else if( (userName !==genericUser[0] && userlastname===genericUser[1])||
+    //if this user is not registered
+    if( (userName !==genericUser[0] && userlastname===genericUser[1])||
     (userName !==genericUser[0] && userlastname !==genericUser[1]) ){
         setAuthorisation(false)
+        swal(`Lo sentimos ${userName} ${userlastname} no estás registrado`)
+        //function to reset the input field
+        function reset (e) {
+           e.target.querySelector('input[name="username"]').value= ''
+
+        }
+        //call reset function
+        reset(e)
     }
 }
 // variable to show if there is not authorised user
@@ -52,17 +62,19 @@ const logOut = () =>{
 
 //when input the correct userName show logged 
     return (
-        <div>{ authorisation ? <div>
-                <h4>Hola {user} {lastName}</h4>
-           <GenericUser />
-           <button onClick={logOut}>Salir</button> 
-            </div> : <div>
-                {login} <h4> Prueba con: </h4>
+        <div>{ !authorisation ? 
+            <div> {login}
+                <h4> Prueba con: </h4>
                 <p>Nombre: user</p>
-                <p>Apellidos: user</p>
+                <p>Apellidos: user</p> 
+            </div> :
+                <div>
+                <h4>Hola {user} {lastName}</h4>
+                <GenericUser />
+                <button onClick={logOut}>Salir</button> 
                 </div>
-
-             
+               
+          
             }</div>
         
     )

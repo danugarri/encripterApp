@@ -31,6 +31,7 @@ const userView= (<main>
     <h4>{btoa(stringtToEncript)}</h4>
   
 </main>)
+
     return (<div>
         {userView }
     </div>
