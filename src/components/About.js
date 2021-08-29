@@ -1,4 +1,5 @@
 import React from 'react';
+import './About.scss'
 
 const explanation = {
     
@@ -18,14 +19,13 @@ const technologyValues =Object.values(explanation.Technologies)
 export default function About () {
 
     return (
-        <header style={{margin:'30px'}}>
-             
+        <header className="basciView" >
              <h2>{intro[0][1]}</h2>
              <h3>{intro[1][0]} :</h3>
-             <ul style ={{margin:'20px',display:'block'}}>
+             <ul style ={{display:'block'}} >
                  {/*here asiggned a unique key to each li*/}
              {technologyValues.map(
-                  elemt =><li
+                  elemt =><li 
                    key ={technologyValues.indexOf(elemt)} >{elemt}</li>)}
              </ul>
         </header>
