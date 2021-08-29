@@ -6,8 +6,9 @@ import swal from 'sweetalert';
 
 // defined a generic user
 const genericUser= ['user','user']
+
 export default function UserLogin () {
-/* sólo podrá entrar daniela*/
+//state for
 const[authorisation,setAuthorisation]= useState(false)
 //state for generic user
 let[user,setUser] = useState('')
@@ -19,17 +20,12 @@ const authorize= e => {
     let userName = e.target.querySelector(
       'input[name="username"]').value;
     let userlastname= e.target.querySelector('input[name="userlastname"]').value
-      //if the user is daniela
-    if((userName==='Daniela' && userlastname==='Molines Ojeda')|| (userName==='daniela' && userlastname==='molines ojeda')){
-        setAuthorisation(() => true)
-        setUser( () =>  userName)
-        setLastName( () => userlastname)
-         //switch state to true which show the <Logged/> component
-    }
+  
     //if the user is a generic one
     if( userName===genericUser[0] && userlastname===genericUser[1] ){
         setUser(() => userName)
         setAuthorisation(() => true)
+         //switch state to true which show the <Logged/> component
         setLastName( () => userlastname)
     }
     //if this user is not registered
@@ -71,7 +67,7 @@ const logOut = () =>{
                 <div>
                 <h4>Hola {user} {lastName}</h4>
                 <GenericUser />
-                <button onClick={logOut}>Salir</button> 
+                <button id ="logOut" onClick={logOut}>Salir</button> 
                 </div>
                
           

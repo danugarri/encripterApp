@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 
 
-export default function GenericUser () {
+const GenericUser=  () => {
     //define the state for the user input
     const [stringtToEncript, setStrintToEncript]= useState('')
    
@@ -26,6 +27,7 @@ const userView= (<main>
     <form >
         <label htmlFor ="encriptar">Introduce una palabra para encriptar</label>
         <input name ="encriptar" type="text" onChange={encript}/>
+        <NavLink to ="encriptado"> Ver detalles</NavLink>
       
     </form>
     <h4>{btoa(stringtToEncript)}</h4>
@@ -39,3 +41,5 @@ const userView= (<main>
         
     )
 }
+export default GenericUser
+   
