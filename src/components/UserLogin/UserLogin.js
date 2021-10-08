@@ -5,8 +5,10 @@ import GenericUser from '../GenericUser/GenericUser';
 import swal from 'sweetalert';
 import { NavLink } from 'react-router-dom';
 
-const genericUser={ name:'user',
-     lastName:'user'
+//inititialised credentials for a generic user
+const genericUser={ 
+    name:'user',
+    lastName:'user'
 
 }
 
@@ -14,8 +16,6 @@ export default function UserLogin ({state,onHandleChange}) {
 //state for
 const[authorisation,setAuthorisation]= useState(false)
 //state for generic user
-//let[user,setUser] = useState('')
-//let [lastName, setLastName] = useState('')
 //state with object
 const [userCredentials,setUserCredentials]=useState({ 
      name:'',
@@ -32,13 +32,12 @@ const authorize= e => {
         name:e.target.querySelector('input[name="username"]').value,
         lastName:e.target.querySelector('input[name="userlastname"]').value
     }
-    console.log('imprimo userCredentials '+Object.values(inputCredentials))
 
         //if the user is a generic one
         if(Object.values(inputCredentials).join('')===Object.values(genericUser).join('')){
             setAuthorisation(() => true)
             //switch state to true which show the <Logged/> component
-             setUserCredentials(prev=> {
+             setUserCredentials(()=> {
                  return(
              {
                  name:e.target.querySelector('input[name="username"]').value,
@@ -54,35 +53,11 @@ const authorize= e => {
         function reset (e) {
            e.target.querySelector('input[name="username"]').value= ''
            e.target.querySelector('input[name="userlastname"]').value =''
-
         }
        
         //call reset function
         reset(e)
         }
-        
-        //////////////////////////////////////////
-        //lo que estaba antes
-    /*
-    let userName = e.target.querySelector('input[name="username"]').value;
-    let userlastname= e.target.querySelector('input[name="userlastname"]').value
-  
-    //if the user is a generic one
-    if( userName===genericUser[0] && userlastname===genericUser[1] ){
-        setUser(() => userName)
-        setAuthorisation(() => true)
-         //switch state to true which show the <Logged/> component
-        setLastName( () => userlastname)
-    }
-    //if this user is not registered
-    if( (userName !==genericUser[0] && userlastname===genericUser[1])||
-    (userName !==genericUser[0] && userlastname !==genericUser[1]) ||
-    (userName ===genericUser[0] && userlastname!==genericUser[1])){
-        setAuthorisation(false)
-        swal(`Lo sentimos ${userName} ${userlastname} no estás registrado`)
-*/  
-        
-      
     }
 
 // variable containing the view to show if there is not authorised user

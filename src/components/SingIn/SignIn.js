@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import swal from "sweetalert";
 
 
 const SignIn= ()=>{
@@ -12,37 +13,43 @@ const [credentials, setCredentials]= useState({
 //submit event handler
 const handleSubmit =(event)=>{
     event.preventDefault()
-    //console.log(event.target.querySelector('input[name="name"]').value)
-    //console.log(event.target.querySelector('input[name="lastname"]').value)
+    console.log(event.target.querySelector('input[name="name"]').value)
+    console.log(event.target.querySelector('input[name="lastname"]').value)
     let userName=event.target.querySelector('input[name="name"]').value
     let userlastname=event.target.querySelector('input[name="lastname"]').value
+
+     const inputCredentials={
+        name:event.target.querySelector('input[name="name"]').value,
+        lastName:event.target.querySelector('input[name="lastname"]').value
+    }
+
+    console.log('has introducido '+Object.values(inputCredentials))
     //managing registered users
     setCredentials(prev =>{//function to be replaced with the props from UserLogin
-        //console.log('las credenciales introducidas son : '+Object.values(credentials))
-        if(Object.values(credentials)!==''){
-
-            return (
-                {...prev,
-                name:userName,
-                lastName:userlastname
-                })}
-                
         
-        else{
-            return ('NO has introducido ningún dato')
+        if(Object.values(inputCredentials).join('')===''){
+            swal ('NO has introducido ningún dato')
+            return({...prev})
         }
-    }
-    )
-     //function to reset the input field
-        function reset (event) {
-           event.target.querySelector('input[name="name"]').value= ''
-           event.target.querySelector('input[name="lastname"]').value =''
+            else{
+                return (
+                {   ...prev,
+                    name:userName,
+                    lastName:userlastname
+                })
+                
+            }
+        })
+            
+    //function to reset the input field
+    function reset (event) {
+       event.target.querySelector('input[name="name"]').value= ''
+       event.target.querySelector('input[name="lastname"]').value =''
 
-        }
-        //call reset function
-        reset(event)
+    }
+    //call reset function
+    reset(event)
     
-    console.log(credentials)
 }
     return(
         <main>
@@ -53,12 +60,7 @@ const handleSubmit =(event)=>{
                 <input type="text" name="lastname" /><br/>
                 <input type="submit" value="Registrarse"/>
             </form>
-            <h1>Tus credenciales son: </h1>
-            <ul>
-                {Object.entries(credentials).map((elem,index)=><li key={index}>{elem}</li>)}    
-            </ul>
-            {console.log('las credenciales introducidas son : '+Object.values(credentials))}
-            {console.log('el estado es '+ Object.values(credentials))}
+            {Object.values(credentials)}
         </main>
     )
 }
