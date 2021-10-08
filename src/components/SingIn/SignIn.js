@@ -1,15 +1,12 @@
-import React,{useState} from "react";
+import React from "react";
 import swal from "sweetalert";
+import UserLogin from "../UserLogin/UserLogin";
 
 
-const SignIn= ()=>{
+const SignIn= ({stateSignIn,onHandleSubmit})=>{
 //this component wil be rendered by App and i need to add a NavLink component in UserLogin
 
-//state to lift up to the parent component( App, and down to UserLogin)
-const [credentials, setCredentials]= useState({
-    name:'',
-    lastName:''
-})
+
 //submit event handler
 const handleSubmit =(event)=>{
     event.preventDefault()
@@ -25,7 +22,7 @@ const handleSubmit =(event)=>{
 
     console.log('has introducido '+Object.values(inputCredentials))
     //managing registered users
-    setCredentials(prev =>{//function to be replaced with the props from UserLogin
+    onHandleSubmit(prev =>{//function  replaced with the props from UserLogin
         
         if(Object.values(inputCredentials).join('')===''){
             swal ('NO has introducido ningún dato')
@@ -53,6 +50,8 @@ const handleSubmit =(event)=>{
 }
     return(
         <main>
+            {
+                Object.values(stateSignIn).join('')===''?
             <form onSubmit={handleSubmit}> 
                 <label htmlFor="name" >Nombre</label>
                 <input type="text" name="name" />
@@ -60,7 +59,9 @@ const handleSubmit =(event)=>{
                 <input type="text" name="lastname" /><br/>
                 <input type="submit" value="Registrarse"/>
             </form>
-            {Object.values(credentials)}
+            :<UserLogin/>
+            }
+            {Object.values(stateSignIn)}
         </main>
     )
 }

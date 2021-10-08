@@ -16,9 +16,15 @@ function App() {
 //state from GenericUser component
 //define the state for the user input in GenericUser component
  const [stringtToEncript, setStringtToEncript]= useState('')//lift this state up to App/UserLogin component
+
+ //////////////////////////////////////////////////////
+ //state to lift up to the parent component( App, and down to UserLogin)
+ //State for the SignIn component
+const [credentials, setCredentials]= useState({
+    name:'',
+    lastName:''
+})
   return (
-    
-    
   <Router >
       {/* Application views are rendered here */}
       <Route path ="/">{/* this is the first view when entering the app*/}
@@ -43,7 +49,7 @@ function App() {
         <GenericUser state={stringtToEncript} onHandleChange={setStringtToEncript}/>
     </Route>
     <Route path="/signin">
-      <SignIn />
+      <SignIn stateSignIn={credentials} onHandleSubmit={setCredentials}/>
      </Route> 
   </Router>
   
