@@ -6,7 +6,6 @@ import UserLogin from "../UserLogin/UserLogin";
 const SignIn= ({stateSignIn,onHandleSubmit})=>{
 //this component wil be rendered by App and i need to add a NavLink component in UserLogin
 
-
 //submit event handler
 const handleSubmit =(event)=>{
     event.preventDefault()
@@ -29,7 +28,7 @@ const handleSubmit =(event)=>{
             return({...prev})
         }
             else{
-                swal(`Te has registrado con éxito ${stateSignIn.name} ${stateSignIn.lastName}`)
+                swal(`Te has registrado con éxito ${inputCredentials.name} ${inputCredentials.lastName}`)
                 return (
                 {   ...prev,
                     name:userName,
@@ -60,9 +59,10 @@ const handleSubmit =(event)=>{
                     <input type="text" name="lastname" /><br/>
                     <input type="submit" value="Registrarse"/>
                 </form>
-                :<UserLogin/>
+                :<UserLogin stateSignIn={stateSignIn}/>
             }
-            {Object.values(stateSignIn)}
+            {/*esto hay que quitarlo*/}
+            {/*Object.values(stateSignIn)*/}
         </main>
     )
 }

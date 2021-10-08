@@ -10,17 +10,16 @@ const genericUser={
     name:'user',
     lastName:'user'
 }
-
-export default function UserLogin ({state,onHandleChange}) {
-//state for
-const[authorisation,setAuthorisation]= useState(false)
-//state for generic user
-//state with object
-const [userCredentials,setUserCredentials]=useState({ 
-     name:'',
-     lastName:''
+export default function UserLogin ({state,onHandleChange,stateSignIn}) {
+    //state for
+    const[authorisation,setAuthorisation]= useState(false)
+    //state for generic user
+    //state with object
+    const [userCredentials,setUserCredentials]=useState({ 
+        name:'',
+        lastName:''
     })
-
+    
 //selecting user input to authorise
 const authorize= e => {
     e.preventDefault()
@@ -29,9 +28,15 @@ const authorize= e => {
         name:e.target.querySelector('input[name="username"]').value,
         lastName:e.target.querySelector('input[name="userlastname"]').value
     }
+    const inputCredentialsValues=Object.values(inputCredentials)
+/////////////////////////////////////////////////////
+    //pruebas
+    console.log(Object.values(stateSignIn).join(''))
+    console.log  (Object.values(inputCredentials).join(''))
+
 
         //if the user is a generic one
-        if(Object.values(inputCredentials).join('')===Object.values(genericUser).join('')){
+        if(inputCredentialsValues.join('')===Object.values(genericUser).join('')){
             setAuthorisation(() => true)
             //switch state to true which show the <Logged/> component
              setUserCredentials(()=> {
@@ -41,9 +46,20 @@ const authorize= e => {
                  lastName: e.target.querySelector('input[name="userlastname"]').value
              })})
         }  
-        //if this user is not registered
+          //if the user is just registered
         
-        if(Object.values(inputCredentials).join('')!==Object.values(genericUser).join('')){
+        else if(Object.values(stateSignIn).join('')!==''){
+                setAuthorisation(() => true)
+                //switch state to true which show the <Logged/> component
+            setUserCredentials(()=> {
+                 return(
+             {
+                 name:e.target.querySelector('input[name="username"]').value,
+                 lastName: e.target.querySelector('input[name="userlastname"]').value
+             })})
+                }  
+        //if this user is not registered
+        else if((inputCredentialsValues.join('')!==Object.values(genericUser).join(''))||(Object.values(stateSignIn).join('')==='')){
             setAuthorisation(false)
             swal(`Lo sentimos ${inputCredentials.name} ${inputCredentials.lastName}, no estás registrado`)
               //function to reset the input field
@@ -54,8 +70,8 @@ const authorize= e => {
         //call reset function
         reset(e)
         }
+      
     }
-
 // variable containing the view to show if there is not authorised user
 const login= (<form onSubmit={authorize}>
     <label htmlFor="username" >Nombre</label>
@@ -63,7 +79,7 @@ const login= (<form onSubmit={authorize}>
     <label htmlFor="userlastname">Apellidos</label>
     <input  name="userlastname" type="text"/><br></br>
     <input type="submit" value="Iniciar sesión"/>
-    <NavLink to='./signin'>Registrase</NavLink> 
+    <NavLink to='./signin'>Registrarse</NavLink> 
 </form>)
 
 //event listener to logout when click on button tag

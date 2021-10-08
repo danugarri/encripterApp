@@ -31,7 +31,7 @@ const [credentials, setCredentials]= useState({
       <BasicView />
       </Route>
       <Route path ='/userlogin'>
-        <UserLogin state={stringtToEncript} onHandleChange={setStringtToEncript}/>
+        <UserLogin state={stringtToEncript} onHandleChange={setStringtToEncript} stateSignIn={credentials}/>
       </Route>
       <Route path ='/desencriptado'>
         <Desencripted state={stringtToEncript}/>
@@ -46,7 +46,7 @@ const [credentials, setCredentials]= useState({
         <About />
       </Route>
       <Route path ="/user" >
-        <GenericUser state={stringtToEncript} onHandleChange={setStringtToEncript}/>
+        <GenericUser />
     </Route>
     <Route path="/signin">
       <SignIn stateSignIn={credentials} onHandleSubmit={setCredentials}/>
