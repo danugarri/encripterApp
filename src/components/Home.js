@@ -11,7 +11,7 @@ export default function Home () {
         <NavLink to ='./'  className="nav-basicView">Home</NavLink>
         <NavLink to ='./userLogin'  className="nav-basicView"> Iniciar Sesión</NavLink>
         <NavLink to ='./about'  className="nav-basicView"> About</NavLink>
-        
+        <NavLink to ='./signin'  className="nav-basicView"> Registrarse</NavLink>
    </header>
              
     
