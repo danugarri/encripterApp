@@ -29,6 +29,7 @@ const handleSubmit =(event)=>{
             return({...prev})
         }
             else{
+                swal(`Te has registrado con éxito ${stateSignIn.name} ${stateSignIn.lastName}`)
                 return (
                 {   ...prev,
                     name:userName,
@@ -52,14 +53,14 @@ const handleSubmit =(event)=>{
         <main>
             {
                 Object.values(stateSignIn).join('')===''?
-            <form onSubmit={handleSubmit}> 
-                <label htmlFor="name" >Nombre</label>
-                <input type="text" name="name" />
-                <label htmlFor="lastname"> Apellido</label>
-                <input type="text" name="lastname" /><br/>
-                <input type="submit" value="Registrarse"/>
-            </form>
-            :<UserLogin/>
+                <form onSubmit={handleSubmit}> 
+                    <label htmlFor="name" >Nombre</label>
+                    <input type="text" name="name" />
+                    <label htmlFor="lastname"> Apellido</label>
+                    <input type="text" name="lastname" /><br/>
+                    <input type="submit" value="Registrarse"/>
+                </form>
+                :<UserLogin/>
             }
             {Object.values(stateSignIn)}
         </main>

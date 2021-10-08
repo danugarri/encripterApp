@@ -9,7 +9,6 @@ import { NavLink } from 'react-router-dom';
 const genericUser={ 
     name:'user',
     lastName:'user'
-
 }
 
 export default function UserLogin ({state,onHandleChange}) {
@@ -21,8 +20,6 @@ const [userCredentials,setUserCredentials]=useState({
      name:'',
      lastName:''
     })
-
-
 
 //selecting user input to authorise
 const authorize= e => {
@@ -54,7 +51,6 @@ const authorize= e => {
            e.target.querySelector('input[name="username"]').value= ''
            e.target.querySelector('input[name="userlastname"]').value =''
         }
-       
         //call reset function
         reset(e)
         }
