@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import './App.css';
 import BasicView from './components/BasicView/BasicView';
@@ -10,8 +10,11 @@ import About from './components/About'
 import GenericUser from './components/GenericUser';
 
 
-function App(props) {
-  console.log(props)
+function App() {
+ /////////////////////////////////////////////////////////////////
+//state from GenericUser component
+//define the state for the user input in GenericUser component
+ const [stringtToEncript, setStringtToEncript]= useState('')//lift this state up to App/UserLogin component
   return (
     
     
@@ -21,13 +24,13 @@ function App(props) {
       <BasicView />
     </Route>
       <Route path ='/userlogin'>
-        <UserLogin />
+        <UserLogin state={stringtToEncript} onHandleChange={setStringtToEncript}/>
       </Route>
       <Route path ='/desencriptado'>
-      <Desencripted initialWord='palabra sin encriptar'/>
+      <Desencripted state={stringtToEncript}/>
       </Route>
       <Route path='/encriptado'>
-        <Encripted  initialWord='palabra sin encriptar'/>{/*it receives prop as parent component*/}
+        <Encripted state={stringtToEncript} />
       </Route>
       <Route path='/logged'>
         <Logged />
@@ -36,7 +39,7 @@ function App(props) {
         <About />
       </Route>
       <Route path ="/user" >
-        <GenericUser />
+        <GenericUser state={stringtToEncript} onHandleChange={setStringtToEncript}/>
     </Route>
   
   </Router>

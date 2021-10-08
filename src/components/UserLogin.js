@@ -7,7 +7,7 @@ import swal from 'sweetalert';
 // defined a generic user
 const genericUser= ['user','user']
 
-export default function UserLogin () {
+export default function UserLogin ({state,onHandleChange}) {
 //state for
 const[authorisation,setAuthorisation]= useState(false)
 //state for generic user
@@ -59,7 +59,7 @@ const logOut = () =>{
     setAuthorisation(false)//change state
 }
 
-//when input the correct userName show logged 
+//when type the correct userName show logged 
     return (
         <div>{ !authorisation ? 
             <div> {login}
@@ -69,12 +69,9 @@ const logOut = () =>{
             </div> :
                 <div>
                 <h4>Hola {user} {lastName}</h4>
-                <GenericUser />
+                <GenericUser  state={state} onHandleChange={onHandleChange}/>{/*props to pass down to GenericUser*/}
                 <button id ="logOut" onClick={logOut}>Salir</button> 
                 </div>
-               
-          
             }</div>
-        
     )
 }

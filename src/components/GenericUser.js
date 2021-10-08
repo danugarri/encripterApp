@@ -1,45 +1,39 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 
 
-const GenericUser=  () => {
-    //define the state for the user input
-    const [stringtToEncript, setStrintToEncript]= useState('')
+const GenericUser=  ({state,onHandleChange}) => {
+    /*
+//defined the state for the user input in GenericUser component
+ const [stringtToEncript, setStrintToEncript]= useState('')//lift this state up to UserLogin component and then to App*/
    
 //event handler function
-const encript = (event) => {
-   
-    //input captured
-const string = event.target.value
-console.log( string)
-setStrintToEncript(string)
+const handleChange = (event) => {
+    event.preventDefault()
+        //input captured
+    const initString = event.target.value
+    console.log( initString)
+    onHandleChange(btoa(initString))//replaced original setState with the prop sent from UserLogin
 }
-
-//event listener to logout when click on button tag
-/*const logOut = () =>{
-    setUser(false)//change state
-}
-*/
+//Encripted word:
 
 const userView= (<main>
     <h1> Encriptemos algo</h1>
     <form >
         <label htmlFor ="encriptar">Introduce una palabra para encriptar</label>
-        <input name ="encriptar" type="text" onChange={encript}/>
-        <NavLink to ="encriptado"> Ver detalles</NavLink>
-      
+        <input name ="encriptar" type="text" onChange={handleChange}/>
+        <NavLink to ="encriptado"  > Ver detalles</NavLink>
+       
     </form>
-    <h4>{btoa(stringtToEncript)}</h4>
-  
 </main>)
 
     return (<div>
-        {userView }
-    </div>
-       
-        
+        {userView}{/*let's encript*/}
+        {/*this line show the encripted word {state}*/}
+    </div> 
     )
 }
 export default GenericUser
+
    
