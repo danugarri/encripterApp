@@ -9,13 +9,16 @@ import Logged from './components/Logged/Logged';
 import About from './components/About/About'
 import GenericUser from './components/GenericUser/GenericUser';
 import SignIn from './components/SingIn/SignIn';
+import { Prueba } from './components/Prueba/Prueba';
 
 
 function App() {
  /////////////////////////////////////////////////////////////////
-//state from GenericUser component
+//states from GenericUser component
 //define the state for the user input in GenericUser component
  const [stringtToEncript, setStringtToEncript]= useState('')//lift this state up to App/UserLogin component
+ //state for submit
+const [submit,setSubmit]= useState('')
 
  //////////////////////////////////////////////////////
  //state to lift up to the parent component( App, and down to UserLogin)
@@ -37,7 +40,8 @@ const [credentials, setCredentials]= useState({
         <Desencripted state={stringtToEncript}/>
       </Route>
       <Route path='/encriptado'>
-        <Encripted state={stringtToEncript} />
+       {console.log(submit)}
+        <Encripted state={stringtToEncript} onHandleChange={setStringtToEncript} submitState={submit} />
       </Route>
       <Route path='/logged'>
         <Logged />
@@ -46,11 +50,12 @@ const [credentials, setCredentials]= useState({
         <About />
       </Route>
       <Route path ="/user" >
-        <GenericUser />
+        <GenericUser submitState={submit} setSubmit={setSubmit} />
     </Route>
     <Route path="/signin">
       <SignIn stateSignIn={credentials} onHandleSubmit={setCredentials}/>
      </Route> 
+     <Prueba />
   </Router>
   
   );
