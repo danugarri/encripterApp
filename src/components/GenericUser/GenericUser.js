@@ -1,9 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
-const GenericUser=  ({setStringtToEncript,credentials}) => {
+const GenericUser=  ({setStringtToEncript,credentials,authorisation}) => {
 
 
     const {name,lastName} = credentials;
@@ -28,9 +29,13 @@ const GenericUser=  ({setStringtToEncript,credentials}) => {
         </form>
     </main>)
 
-    return (<div>
-        {userView}{/*let's encript*/}
-        {/*this line show the encripted word {state}*/}
+    return (
+    <div>
+        { authorisation ?
+            userView
+        : <Redirect to= 'userLogin'></Redirect>
+        }
+     
     </div> 
     )
 }

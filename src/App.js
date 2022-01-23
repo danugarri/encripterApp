@@ -24,14 +24,34 @@ const [credentials, setCredentials]= useState({
     name:'',
     lastName:''
 })
+//state for set auth
+   const[authorisation,setAuthorisation]= useState(false)
+   const logOut = () =>{
+        setAuthorisation(false)//change state
+        setCredentials(() => {
+          return {
+            name: '',
+            lastName: ''
+          }
+        }
+        )
+    }
+
+
   return (
   <Router >
       {/* Application views are rendered here */}
-      <Route path ="/">{/* this is the first view when entering the app*/}
-      <BasicView />
+      <Route  path ="/">{/* this is the first view when entering the app*/}
+      <BasicView logOut = {logOut} />
       </Route>
       <Route path ='/userlogin'>
-        <UserLogin state={stringtToEncript} stateSignIn={credentials} setCredentials= {setCredentials}/>
+        <UserLogin
+         state={stringtToEncript}
+         stateSignIn={credentials}
+         setCredentials= {setCredentials}
+         authorisation= {authorisation}
+         setAuthorisation= {setAuthorisation}
+         />
       </Route>
       <Route path ='/desencriptado'>
         <Decrypted state={stringtToEncript}/>
@@ -46,7 +66,11 @@ const [credentials, setCredentials]= useState({
         <About />
       </Route>
       <Route path ="/user" >
-        <GenericUser setStringtToEncript={setStringtToEncript} credentials= {credentials} />
+        <GenericUser
+          setStringtToEncript={setStringtToEncript}
+          credentials= {credentials}
+          authorisation= {authorisation}
+           />
     </Route>
     <Route path="/signin">
       <SignIn stateSignIn={credentials} onHandleSubmit={setCredentials}/>
