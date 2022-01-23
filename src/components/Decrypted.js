@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './encript.css'
 
 
-export default function Desencripted ({state}) {
+export default function Decrypted ({state}) {
 /* función para encriptar btoa('string') y atob('string')*/
 
 

@@ -1,24 +1,20 @@
 import {React,useState} from 'react';
 import './UserLogin.css'
 //import Logged from './Logged'
-import GenericUser from '../GenericUser/GenericUser';
 import swal from 'sweetalert';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 
 //inititialised credentials for a generic user
 const genericUser={ 
     name:'user',
     lastName:'user'
 }
-export default function UserLogin ({state,onHandleChange,stateSignIn}) {
+export default function UserLogin ({stateSignIn,setCredentials}) {
     //state for
     const[authorisation,setAuthorisation]= useState(false)
     //state for generic user
     //state with object
-    const [userCredentials,setUserCredentials]=useState({ 
-        name:'',
-        lastName:''
-    })
+  
     
 //selecting user input to authorise
 const authorize= e => {
@@ -39,7 +35,7 @@ const authorize= e => {
         if(inputCredentialsValues.join('')===Object.values(genericUser).join('')){
             setAuthorisation(() => true)
             //switch state to true which show the <Logged/> component
-             setUserCredentials(()=> {
+             setCredentials(()=> {
                  return(
              {
                  name:e.target.querySelector('input[name="username"]').value,
@@ -51,7 +47,7 @@ const authorize= e => {
         else if(Object.values(stateSignIn).join('')!==''){
                 setAuthorisation(() => true)
                 //switch state to true which show the <Logged/> component
-            setUserCredentials(()=> {
+            setCredentials(()=> {
                  return(
              {
                  name:e.target.querySelector('input[name="username"]').value,
@@ -97,12 +93,7 @@ const logOut = () =>{
                 <p>Nombre: user</p>
                 <p>Apellidos: user</p> 
             </div> :
-                <div>
-                <h4>Hola  {userCredentials.name} {userCredentials.lastName}</h4>
-                {console.log('el saludo a :'+Object.values(userCredentials))}
-                <GenericUser  state={state} onHandleChange={onHandleChange}/>{/*props to pass down to GenericUser*/}
-                <button id ="logOut" onClick={logOut}>Salir</button> 
-                </div>
+                <Redirect to= 'user'></Redirect>
             }</div>
     )
 }
