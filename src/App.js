@@ -2,8 +2,8 @@ import React,{useState} from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import './App.css';
 import BasicView from './components/BasicView/BasicView';
-import Desencripted from './components/Desencripted'
-import Encripted from './components/Encripted';
+import Decrypted from './components/Decrypted'
+import Encryted from './components/Encryted';
 import UserLogin from './components/UserLogin/UserLogin';
 import Logged from './components/Logged/Logged';
 import About from './components/About/About'
@@ -34,10 +34,10 @@ const [credentials, setCredentials]= useState({
         <UserLogin state={stringtToEncript} onHandleChange={setStringtToEncript} stateSignIn={credentials}/>
       </Route>
       <Route path ='/desencriptado'>
-        <Desencripted state={stringtToEncript}/>
+        <Decrypted state={stringtToEncript}/>
       </Route>
       <Route path='/encriptado'>
-        <Encripted state={stringtToEncript} />
+        <Encryted state={stringtToEncript} />
       </Route>
       <Route path='/logged'>
         <Logged />

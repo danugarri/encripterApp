@@ -7,7 +7,7 @@ export default function Home () {
     return (
         
         <header style={{margin:'30px auto'}}>
-        <h1> The Encripter App</h1>
+        <h1> The Encrypter App</h1>
         <NavLink to ='./'  className="nav-basicView">Home</NavLink>
         <NavLink to ='./userLogin'  className="nav-basicView"> Iniciar Sesión</NavLink>
         <NavLink to ='./about'  className="nav-basicView"> About</NavLink>

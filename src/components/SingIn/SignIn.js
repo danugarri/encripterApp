@@ -61,8 +61,6 @@ const handleSubmit =(event)=>{
                 </form>
                 :<UserLogin stateSignIn={stateSignIn}/>
             }
-            {/*esto hay que quitarlo*/}
-            {/*Object.values(stateSignIn)*/}
         </main>
     )
 }
