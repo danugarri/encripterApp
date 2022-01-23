@@ -54,10 +54,10 @@ const [credentials, setCredentials]= useState({
          />
       </Route>
       <Route path ='/desencriptado'>
-        <Decrypted state={stringtToEncript}/>
+        <Decrypted state={stringtToEncript} authorisation= {authorisation}/>
       </Route>
       <Route path='/encriptado'>
-        <Encryted state={stringtToEncript} />
+        <Encryted state={stringtToEncript} authorisation= {authorisation}/>
       </Route>
       <Route path='/logged'>
         <Logged />
