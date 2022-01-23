@@ -1,6 +1,6 @@
 import React from "react";
 import swal from "sweetalert";
-import UserLogin from "../UserLogin/UserLogin";
+import { Redirect } from "react-router-dom";
 
 
 const SignIn= ({stateSignIn,onHandleSubmit})=>{
@@ -59,7 +59,7 @@ const handleSubmit =(event)=>{
                     <input type="text" name="lastname" /><br/>
                     <input type="submit" value="Registrarse"/>
                 </form>
-                :<UserLogin stateSignIn={stateSignIn}/>
+                : <Redirect to= 'user'></Redirect>
             }
         </main>
     )
